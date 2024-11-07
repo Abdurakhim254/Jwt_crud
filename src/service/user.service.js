@@ -10,9 +10,17 @@ export const getuserByid=async(id)=>{
 }
 
 export const createuser=async({id,name,age,email,familya})=>{
-    const result=User({id,name,age,email,familya})
-    result.save()
-    return "User yaratildi"
+    try {
+        const result=User({id,name,age,email,familya})
+        result.save()
+        return "User yaratildi"
+    } catch (error) {
+        if(error.code==11000){
+            return "Bazadagi malumot bilan o'xshash malumot bor"
+        }else{
+            throw error
+        }
+    }
 }
 export const deleteuser=async(id)=>{
     await User.deleteOne({id:id})

@@ -16,7 +16,11 @@ export const createadmin=async(data)=>{
         result.save()
         return "Admin Yaratildi"   
     } catch (error) {
-        return error.message
+        if(error.code===11000){
+            return "Bazadagi malumot bilan o'xshash malumot bor"
+        }else{
+            throw error
+        }
     }
 
 }
