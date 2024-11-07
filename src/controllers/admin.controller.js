@@ -84,7 +84,10 @@ export const CreateUserAdminCon=async(req,res)=>{
 
 export const UpdateUserAdminCon=async(req,res)=>{
     try {
-        res.status(200).send("Ok")
+        const id=+req.params.id
+        const {name,email,familya,age}=req.body
+        const result=await Updateusermodel({id,name,email,familya,age})
+        res.status(200).send(result)
     } catch (error) {
         res.status(400).send("Admin orqali user yaratishda xatolik")
 

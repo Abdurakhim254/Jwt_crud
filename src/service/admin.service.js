@@ -11,9 +11,14 @@ export const getadminByid=async(id)=>{
 }
 
 export const createadmin=async(data)=>{
-    const result=await Admin(data)
-    result.save()
-    return "Admin Yaratildi"
+    try {
+        const result=await Admin(data)
+        result.save()
+        return "Admin Yaratildi"   
+    } catch (error) {
+        return error.message
+    }
+
 }
 export const updateadmin=async({id,adminname,admin_email,password})=>{
     await Admin.updateOne({adminId:id},{adminname:adminname,admin_email:admin_email,password:password})
